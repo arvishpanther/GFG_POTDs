@@ -13,7 +13,7 @@ There are only 6 steps reuired to reach num2 from num1.
 and all the intermediate numbers are 4 digit prime numbers.
 
 */
-class GFG_25Jan2024{
+class J{
      int solve(int Num1,int Num2){
         int max_num = 9999;
         int[] prime = new int[10001];

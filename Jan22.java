@@ -1,7 +1,37 @@
 //{ Driver Code Starts
 import java.util.*;
 import java.io.*;
-
+class Solution
+{
+    public static void fun(Node currNode,int sum,int sumSoFar,ArrayList<Integer>path,ArrayList<ArrayList<Integer>> ans){
+        if(currNode==null){
+            return;
+        }
+        sumSoFar+=currNode.data;
+        path.add(currNode.data);
+        if(sumSoFar==sum){
+            ans.add(new ArrayList<>(path));
+        }
+        if(currNode.left!=null){
+            fun(currNode.left,sum,sumSoFar,path,ans);
+        }
+        if(currNode.right!=null){
+            fun(currNode.right,sum,sumSoFar,path,ans);
+        }
+        path.remove(path.size()-1);
+        
+    }
+    public static ArrayList<ArrayList<Integer>> printPaths(Node root, int sum)
+    {
+        // code here
+        ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
+        ArrayList<Integer>path=new ArrayList<>();
+        fun(root,sum,0,path,ans);
+        return ans;
+    }
+}
+//user code ends
+//----------------------------------------------------------------
 class Node {
     int data;
     Node left;
@@ -12,7 +42,6 @@ class Node {
         right = null;
     }
 } 
-
 public class GfG_22Jan2024 {
     public static Node buildTree(String str) {
         if (str.length() == 0 || str.charAt(0) == 'N') {
@@ -117,49 +146,3 @@ public class GfG_22Jan2024 {
     }
 }
 // } Driver Code Ends
-
-
-//User function Template for Java
-
-/*Tree Node
-class Node {
-    int data;
-    Node left;
-    Node right;
-    Node(int data) {
-        this.data = data;
-        left = null;
-        right = null;
-    }
-}
-*/
-
-class Solution
-{
-    public static void fun(Node currNode,int sum,int sumSoFar,ArrayList<Integer>path,ArrayList<ArrayList<Integer>> ans){
-        if(currNode==null){
-            return;
-        }
-        sumSoFar+=currNode.data;
-        path.add(currNode.data);
-        if(sumSoFar==sum){
-            ans.add(new ArrayList<>(path));
-        }
-        if(currNode.left!=null){
-            fun(currNode.left,sum,sumSoFar,path,ans);
-        }
-        if(currNode.right!=null){
-            fun(currNode.right,sum,sumSoFar,path,ans);
-        }
-        path.remove(path.size()-1);
-        
-    }
-    public static ArrayList<ArrayList<Integer>> printPaths(Node root, int sum)
-    {
-        // code here
-        ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
-        ArrayList<Integer>path=new ArrayList<>();
-        fun(root,sum,0,path,ans);
-        return ans;
-    }
-}
